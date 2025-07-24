@@ -1,8 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Home Premium</title>
@@ -12,6 +10,7 @@
             --gray: #3F4E4F;
             --brown: #A27B5C;
             --cream: #DCD7C9;
+            --highlight: #A27B5C;
         }
 
         * {
@@ -40,35 +39,13 @@
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
         }
 
-        .header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 30px;
-            gap: 15px;
-        }
-
-        .logo {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--brown);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-        }
-
         h1 {
             font-weight: 300;
             font-size: 28px;
+            margin-bottom: 30px;
+            text-align: center;
             letter-spacing: 1px;
-            color: var(--cream);
-        }
-
-        .hacker-text {
             color: var(--brown);
-            font-weight: bold;
         }
 
         .device-card {
@@ -112,13 +89,14 @@
             background: var(--brown);
             color: var(--cream);
             border: none;
-            padding: 12px;
+            padding: 15px;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 18px;
             transition: all 0.3s;
             text-align: center;
             position: relative;
+            margin: 2px; /* Отступ для обводки */
         }
 
         .btn:hover {
@@ -127,21 +105,18 @@
         }
 
         .btn.active {
-            position: relative;
-            z-index: 1;
+            box-shadow: 0 0 0 2px var(--gray), 0 0 0 4px var(--highlight);
         }
-        
-        .btn.active::after {
-            content: '';
-            position: absolute;
-            top: -4px;
-            left: -4px;
-            right: -4px;
-            bottom: -4px;
-            border: 2px solid var(--brown);
-            border-radius: 10px;
-            z-index: -1;
-            background: var(--gray);
+
+        .btn-big {
+            padding: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .btn-off {
+            background: var(--dark);
+            border: 1px solid var(--brown);
         }
 
         .btn-group {
@@ -151,40 +126,6 @@
 
         .btn-group .btn {
             flex: 1;
-        }
-
-        .btn-off {
-            background: var(--dark);
-            border: 1px solid var(--brown);
-        }
-
-        .slider-container {
-            margin: 15px 0;
-        }
-
-        .slider {
-            -webkit-appearance: none;
-            width: 100%;
-            height: 8px;
-            border-radius: 4px;
-            background: var(--dark);
-            outline: none;
-        }
-
-        .slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            background: var(--brown);
-            cursor: pointer;
-        }
-
-        .slider-value {
-            text-align: right;
-            font-size: 14px;
-            margin-top: 5px;
-            color: var(--brown);
         }
 
         .mode-select {
@@ -224,121 +165,20 @@
             font-size: 12px;
             opacity: 0.7;
         }
-
-        /* Медиазапросы для адаптации */
-        @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-                border-radius: 15px;
-            }
-            
-            .header {
-                margin-bottom: 20px;
-            }
-            
-            h1 {
-                font-size: 24px;
-            }
-            
-            .device-card {
-                padding: 15px;
-            }
-            
-            .btn {
-                padding: 10px;
-                font-size: 14px;
-            }
-            
-            .stats {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .stat-card {
-                padding: 12px;
-            }
-            
-            .stat-value {
-                font-size: 24px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            body {
-                padding: 10px;
-            }
-            
-            .container {
-                padding: 15px;
-                border-radius: 12px;
-            }
-            
-            .header {
-                flex-direction: column;
-                text-align: center;
-                gap: 10px;
-            }
-            
-            h1 {
-                font-size: 22px;
-            }
-            
-            .logo {
-                width: 40px;
-                height: 40px;
-                font-size: 20px;
-            }
-            
-            .device-icon {
-                width: 35px;
-                height: 35px;
-                font-size: 18px;
-                margin-right: 10px;
-            }
-            
-            .device-name {
-                font-size: 16px;
-            }
-            
-            .btn-group {
-                flex-direction: column;
-            }
-            
-            .slider-container {
-                margin: 10px 0;
-            }
-        }
-
-        @media (min-width: 1200px) {
-            .container {
-                max-width: 700px;
-            }
-        }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <div class="logo">⌂</div>
-            <h1><span class="hacker-text">Умный Дом</span></h1>
-        </div>
+        <h1>⌂ Умный Дом</h1>
         
-        <!-- Освещение -->
+        <!-- Освещение - одна кнопка -->
         <div class="device-card">
             <div class="device-header">
                 <div class="device-icon">💡</div>
                 <div class="device-name">Освещение</div>
             </div>
             <div class="device-controls">
-                <div class="btn-group">
-                    <button class="btn active">Яркий</button>
-                    <button class="btn">Тёплый</button>
-                    <button class="btn btn-off">Выкл</button>
-                </div>
-                <div class="slider-container">
-                    <input type="range" min="0" max="100" value="70" class="slider" id="lightSlider">
-                    <div class="slider-value">Яркость: 70%</div>
-                </div>
+                <button id="lightBtn" class="btn btn-big">СВЕТ</button>
             </div>
         </div>
         
@@ -355,10 +195,6 @@
                     <option>Обогрев</option>
                     <option>Вентиляция</option>
                 </select>
-                <div class="slider-container">
-                    <input type="range" min="16" max="30" value="22" class="slider" id="tempSlider">
-                    <div class="slider-value">Температура: 22°C</div>
-                </div>
             </div>
         </div>
         
@@ -398,37 +234,40 @@
     </div>
 
     <script>
-        // Динамическое обновление слайдеров
-        const lightSlider = document.getElementById('lightSlider');
-        const tempSlider = document.getElementById('tempSlider');
+        // Рабочая кнопка СВЕТ
+        const lightBtn = document.getElementById('lightBtn');
+        let lightState = false;
         
-        lightSlider.addEventListener('input', () => {
-            document.querySelector('#lightSlider + .slider-value').textContent = 
-                `Яркость: ${lightSlider.value}%`;
-        });
-        
-        tempSlider.addEventListener('input', () => {
-            document.querySelector('#tempSlider + .slider-value').textContent = 
-                `Температура: ${tempSlider.value}°C`;
+        lightBtn.addEventListener('click', () => {
+            lightState = !lightState;
+            lightBtn.classList.toggle('active', lightState);
+            
+            fetch('/toggle')
+                .then(response => response.text())
+                .then(data => console.log("Моторчик активирован"))
+                .catch(err => console.error('Ошибка:', err));
         });
 
-        // Имитация работы кнопок
-        document.querySelectorAll('.btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Сбрасываем активность у всех кнопок в группе
-                if (btn.parentElement.classList.contains('btn-group')) {
-                    btn.parentElement.querySelectorAll('.btn').forEach(b => {
-                        b.classList.remove('active');
-                        b.classList.remove('btn-off');
-                    });
-                }
+        // Декоративные кнопки безопасности
+        document.querySelectorAll('.device-card:nth-child(3) .btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.parentElement.querySelectorAll('.btn').forEach(b => {
+                    b.classList.remove('active', 'btn-off');
+                    b.style.opacity = '1';
+                });
                 
-                if (btn.textContent === 'Выкл') {
-                    btn.classList.add('btn-off');
+                if(this.textContent === 'Выкл') {
+                    this.classList.add('btn-off');
                 } else {
-                    btn.classList.add('active');
+                    this.classList.add('active');
                 }
             });
+        });
+        
+        // Декоративный select
+        document.querySelector('.mode-select').addEventListener('change', function() {
+            this.style.borderColor = 'var(--highlight)';
+            setTimeout(() => this.style.borderColor = 'var(--brown)', 500);
         });
     </script>
 </body>
